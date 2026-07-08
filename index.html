@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Laninha!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bg-music" src="cool-with-you.mp3" loop></audio>
+    
+    <!-- Elementos flutuantes contínuos no fundo desfocado -->
+    <div class="pixel-background">
+        <div class="floating-item p-heart" style="left: 15%; animation-delay: 0s;">❤️</div>
+        <div class="floating-item p-hk" style="left: 30%; animation-delay: 4s;">🐱</div>
+        <div class="floating-item p-heart" style="left: 55%; animation-delay: 2s;">💖</div>
+        <div class="floating-item p-hk" style="left: 75%; animation-delay: 6s;">🎀</div>
+        <div class="floating-item p-heart" style="left: 85%; animation-delay: 1s;">💝</div>
+    </div>
+
+    <!-- Container para a explosão de partículas no clique -->
+    <div id="burst-container"></div>
+
+    <div class="container">
+        
+        <!-- TELA INICIAL -->
+        <div id="initialScreen" class="card-layout target-card">
+            <h1 class="main-title">Presente para Laninha ❤️</h1>
+            <p class="subtitle">Um presente especial para você. Clique no botão abaixo para abrir.</p>
+            
+            <div class="pixel-gift">🎁</div>
+            
+            <button id="openBtn" class="pixel-button">
+                <span class="btn-heart">❤️</span> ABRIR PRESENTÃO
+            </button>
+            <p class="footer-hint">Prepare-se para reviver momentos e memórias...</p>
+        </div>
+
+        <!-- TELA DA CARTA (Alargada e em 3 Colunas) -->
+        <div id="contentScreen" class="card-layout wide-card hidden">
+            <h1 class="card-title">Happy Birthday, Halana!</h1>
+            
+            <!-- Linha interativa: Hello Kitty + Fotos + Kuromi -->
+            <div class="sanrio-showcase">
+                <div class="side-character character-left">
+                    <span class="pixel-sprite">🐱🎀</span>
+                    <p class="char-tag hk-tag">Hello Kitty</p>
+                </div>
+
+                <div class="photo-carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Preparado para as 7 fotos que você vai mandar -->
+                        <img src="foto1.jpg" alt="Momento 1" class="carousel-img active">
+                        <img src="foto2.jpg" alt="Momento 2" class="carousel-img">
+                        <img src="foto3.jpg" alt="Momento 3" class="carousel-img">
+                        <img src="foto4.jpg" alt="Momento 4" class="carousel-img">
+                        <img src="foto5.jpg" alt="Momento 5" class="carousel-img">
+                        <img src="foto6.jpg" alt="Momento 6" class="carousel-img">
+                        <img src="foto7.jpg" alt="Momento 7" class="carousel-img">
+                    </div>
+                </div>
+
+                <div class="side-character character-right">
+                    <span class="pixel-sprite">😈🖤</span>
+                    <p class="char-tag kuromi-tag">Kuromi</p>
+                </div>
+            </div>
+
+            <div class="message-box">
+                <p class="letter">
+                    Oi Halana! Foi difícil achar uma música para colocar nesse presente, mas essa me faz lembrar de você e do carinho que sinto por vc. Ela traz uma paz absurda, uma vibe leve e uma calmaria que melhora qualquer dia.
+                    <br><br>
+                    Nossa conexão e a nossa amizade são coisas que eu valorizo demais. É bom demais ter alguém com quem posso ser 100% eu mesmo, compartilhar risadas, momentos bobos e saber que tenho o seu apoio. Seu carinho e sua energia fazem uma diferença enorme na minha vida.
+                </p>
+                <div class="signature">Te amo Laninha! 💖</div>
+            </div>
+
+            <div class="couple-container">
+                <img src="images (52).jpeg" alt="Hello Kitty e Namorado" class="couple-img">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
