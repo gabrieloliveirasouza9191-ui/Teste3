@@ -6,64 +6,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (openBtn && initialScreen && contentScreen) {
         openBtn.addEventListener('click', (e) => {
-            // Pega as coordenadas exatas do clique do dedo ou mouse
-            const clickX = e.clientX;
-            const clickY = e.clientY;
+            // Executa a explosão em massa vinda do centro e das laterais
+            triggerMegaExplosion();
 
-            // Dispara a explosão de corações pixelados naquelas coordenadas
-            createBurst(clickX, clickY);
-
-            // Aguarda um pequeno delay (400ms) para ela ver a animação antes do card sumir
+            // Retarda um pouquinho a troca de tela (600ms) para criar suspense em meio aos confetes
             setTimeout(() => {
                 initialScreen.classList.add('hidden');
                 contentScreen.classList.remove('hidden');
 
                 if (bgMusic) {
-                    bgMusic.play().catch(err => console.log("Áudio contido:", err));
+                    bgMusic.play().catch(err => console.log("Áudio bloqueado:", err));
                 }
 
                 startCarousel();
-            }, 400);
+            }, 600);
         });
     }
 });
 
-function createBurst(x, y) {
-    const container = document.getElementById('burst-container');
+/**
+ * Dispara uma tempestade de confetes e itens Sanrio de forma espalhafatosa
+ */
+function triggerMegaExplosion() {
+    const container = document.getElementById('mega-explosion-container');
     if (!container) return;
 
-    // Número de corações que vão voar
-    const particleCount = 35; 
-    
-    // Lista de itens que podem explodir (Se preferir Hello Kitty, mude para ['🐱', '🎀'])
-    const pool = ['❤️', '💖', '💝', '💘', '🌸'];
+    // Elementos premium misturados na explosão
+    const items = ['❤️', '💖', '💝', '✨', '🌸', '🎀', '🐱', '😈', '🍬'];
+    const totalParticles = 90; // Aumentado drasticamente para encher a tela
 
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Sorteia um item da lista
-        particle.innerText = pool[Math.floor(Math.random() * pool.length)];
-        
-        // Posiciona no local exato do clique
-        particle.style.top = `${y}px`;
-        particle.style.left = `${x}px`;
+    for (let i = 0; i < totalParticles; i++) {
+        const p = document.createElement('div');
+        p.className = 'ext-particle';
+        p.innerText = items[Math.floor(Math.random() * items.length)];
 
-        // Define direções e distâncias aleatórias para a dispersão (CSS Variables)
+        // Origem randômica centrada ao redor da área do botão original
+        const startX = window.innerWidth / 2 + (Math.random() * 120 - 60);
+        const startY = window.innerHeight / 2 + (Math.random() * 60 - 30);
+        
+        p.style.left = `${startX}px`;
+        p.style.top = `${startY}px`;
+
+        // Atributos de dispersão hiper dinâmicos (ângulos e rotações selvagens)
         const angle = Math.random() * Math.PI * 2;
-        const velocity = 50 + Math.random() * 180; // Distância do espalhamento
-        const mx = Math.cos(angle) * velocity;
-        const my = Math.sin(angle) * velocity;
+        const radius = 180 + Math.random() * 320; // Distância de projeção gigante
+        const tx = Math.cos(angle) * radius;
+        const ty = Math.sin(angle) * radius - (Math.random() * 150); // Força para cima
+        const rot = `${Math.random() * 720 - 360}deg`;
+        const scl = 0.4 + Math.random() * 1.2;
 
-        particle.style.setProperty('--mx', `${mx}px`);
-        particle.style.setProperty('--my', `${my}px`);
+        p.style.setProperty('--tx', `${tx}px`);
+        p.style.setProperty('--ty', `${ty}px`);
+        p.style.setProperty('--rot', rot);
+        p.style.setProperty('--scl', scl);
 
-        container.appendChild(particle);
+        container.appendChild(p);
 
-        // Remove do HTML após o término da animação para não sobrecarregar
-        setTimeout(() => {
-            particle.remove();
-        }, 1200);
+        // Limpa a memória tirando a partícula após sumir
+        setTimeout(() => p.remove(), 1500);
     }
 }
 
@@ -73,7 +73,6 @@ function startCarousel() {
 
     let currentIndex = 0;
 
-    // Configurado para rodar em loop passando pelas 7 fotos automaticamente
     setInterval(() => {
         images[currentIndex].classList.remove('active');
         currentIndex = (currentIndex + 1) % images.length;
