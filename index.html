@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Laninha!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Música de fundo (Deixe o arquivo cool-with-you.mp3 na mesma pasta) -->
+    <audio id="bg-music" src="cool-with-you.mp3" loop></audio>
+    <div class="bokeh-background"></div>
+
+    <div class="container">
+        
+        <!-- TELA INICIAL -->
+        <div id="initialScreen" class="card-layout">
+            <h1 class="main-title">Presente para Laninha ❤️</h1>
+            <p class="subtitle">Um presente especial para você. Clique no botão abaixo para abrir.</p>
+            
+            <!-- Presente em formato de Emoji (ou troque por uma tag <img> se preferir) -->
+            <div class="pixel-gift">🎁</div>
+            
+            <button id="openBtn" class="pixel-button">
+                <span class="btn-heart">❤️</span> ABRIR PRESENTÃO
+            </button>
+            <p class="footer-hint">Prepare-se para reviver momentos e memórias...</p>
+        </div>
+
+        <!-- TELA DA CARTA (REVELADA APÓS O CLIQUE) -->
+        <div id="contentScreen" class="card-layout hidden">
+            <h1 class="card-title">Happy Birthday, Halana!</h1>
+            
+            <!-- Carrossel de fotos dela passando sozinho -->
+            <div class="photo-carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Substitua as URLs abaixo pelas fotos reais da Halana posteriormente -->
+                    <img src="foto1.jpg" alt="Momento 1" class="carousel-img active">
+                    <img src="foto2.jpg" alt="Momento 2" class="carousel-img">
+                    <img src="foto3.jpg" alt="Momento 3" class="carousel-img">
+                </div>
+            </div>
+
+            <!-- Caixa com a Mensagem -->
+            <div class="message-box">
+                <p class="letter">
+                    Oi Halana! Foi difícil achar uma música para colocar nesse presente, mas essa me faz lembrar de você e do carinho que sinto por vc. Ela traz uma paz absurda, uma vibe leve e uma calmaria que melhora qualquer dia.
+                    <br><br>
+                    Nossa conexão e a nossa amizade são coisas que eu valorizo demais. É bom demais ter alguém com quem posso ser 100% eu mesmo, compartilhar risadas, momentos bobos e saber que tenho o seu apoio. Seu carinho e sua energia fazem uma diferença enorme na minha vida.
+                </p>
+                <div class="signature">Te amo Laninha! 💖</div>
+            </div>
+
+            <!-- Imagem Final da Hello Kitty e Namorado se abraçando -->
+            <div class="couple-container">
+                <img src="images (52).jpeg" alt="Hello Kitty e Namorado" class="couple-img">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

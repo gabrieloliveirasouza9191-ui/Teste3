@@ -1,0 +1,233 @@
+/* ==========================================================================
+   RESET E ESTILOS GERAIS (CELULAR / MOBILE FIRST)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d010c;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding: 40px 20px;
+}
+
+/* Fundo Iluminado com Efeito Bokeh */
+.bokeh-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, #fbcfe8 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, #f472b6 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #fce7f3, #fbcfe8);
+    filter: blur(40px);
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+}
+
+/* Base Comum dos Cards */
+.card-layout {
+    background-color: rgba(255, 240, 245, 0.95);
+    border-radius: 40px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(219, 39, 119, 0.15);
+    border: 3px solid #fbcfe8;
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Tela Inicial */
+.main-title {
+    color: #9d174d;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #b55d88;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.pixel-gift {
+    font-size: 6rem;
+    margin-bottom: 30px;
+    animation: bounce 2s infinite ease-in-out;
+    display: inline-block;
+}
+
+/* Botão de Abrir */
+.pixel-button {
+    background-color: #ffffff;
+    border: 3px solid #f472b6;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #db2777;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #f472b6;
+    transition: all 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pixel-button:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #f472b6;
+}
+
+.footer-hint {
+    color: #b55d88;
+    font-size: 0.9rem;
+    margin-top: 35px;
+}
+
+/* Tela da Carta e Carrossel */
+.card-title {
+    font-family: 'Georgia', serif;
+    color: #9d174d;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.photo-carousel {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 25px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 5px solid #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-img.active {
+    opacity: 1;
+}
+
+.message-box {
+    margin-top: 30px;
+}
+
+.letter {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    text-align: left;
+}
+
+.signature {
+    color: #db2777;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-top: 25px;
+}
+
+.couple-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.couple-img {
+    max-width: 180px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.hidden { display: none !important; }
+
+/* Animações Básicas */
+@keyframes bounce {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.05) translateY(-12px); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   PORTABILIDADE: MONITORES DE COMPUTADOR E SMART TVS
+   ========================================================================== */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 800px;
+    }
+
+    .card-layout {
+        padding: 60px 50px;
+        border-radius: 50px;
+    }
+
+    .main-title, .card-title {
+        font-size: 3.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+    }
+
+    .pixel-gift {
+        font-size: 9rem;
+        margin-bottom: 40px;
+    }
+
+    .pixel-button {
+        padding: 22px 60px;
+        font-size: 1.6rem;
+    }
+
+    .photo-carousel {
+        width: 380px;
+        height: 380px;
+        margin: 35px auto;
+    }
+
+    .letter {
+        font-size: 1.4rem;
+        line-height: 1.8;
+    }
+
+    .signature {
+        font-size: 2rem;
+        margin-top: 35px;
+    }
+
+    .couple-img {
+        max-width: 250px;
+    }
+}
