@@ -10,15 +10,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffd1dc;
+    background-color: #dca7b2; /* Rosa queimado/antigo idêntico ao fundo do tablet */
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
     padding: 20px;
 }
 
-/* Fundo Estilo Blur com Elementos Nitidos Flutuando */
-.pixel-background {
+/* ==========================================================================
+   NOVO FUNDO: COZY & ACORDES DA MAQUETE
+   ========================================================================== */
+.cozy-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,79 +28,104 @@ body {
     height: 100%;
     z-index: 1;
     pointer-events: none;
-    overflow: hidden;
 }
 
-.floating-item {
+/* Varal de luzes no topo */
+.string-lights {
     position: absolute;
-    bottom: -100px;
-    font-size: 2.5rem;
-    user-select: none;
-    animation: floatUp 14s infinite linear;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-image: radial-gradient(circle, #fef08a 4px, transparent 5px);
+    background-size: 50px 60px;
+    background-repeat: repeat-x;
+    filter: drop-shadow(0 0 8px #fde047);
+    opacity: 0.85;
+}
+.string-lights::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.p-heart { font-size: 2.2rem; filter: drop-shadow(2px 2px 0px #db2777); }
-.p-hk { font-size: 2.6rem; filter: drop-shadow(2px 2px 0px #9d174d); }
-
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.7; }
-    90% { opacity: 0.7; }
-    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+/* Camada de corações decorativos estáticos no fundo */
+.bg-hearts-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.18;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24'%3E%3Cpath fill='%239d174d' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
 }
 
-/* Container de Explosão */
-#burst-container {
+/* ==========================================================================
+   SISTEMA DE ANIMAÇÃO ESPALHAFATOSA (CONFRETE / POP)
+   ========================================================================== */
+#mega-explosion-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: 9999;
     pointer-events: none;
 }
 
-.particle {
+.ext-particle {
     position: absolute;
-    font-size: 2rem;
-    pointer-events: none;
-    animation: explodeParticle 1.2s ease-out forwards;
+    font-size: 2.5rem;
+    will-change: transform, opacity;
+    animation: blast 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
 
-@keyframes explodeParticle {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(var(--mx), var(--my)) scale(0.5); opacity: 0; }
+@keyframes blast {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(0.5);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(var(--scl));
+        opacity: 0;
+    }
 }
 
-/* CARDS DE INTERFACE */
+/* ==========================================================================
+   ESTILIZAÇÃO INTERNA DOS CARDS (BORDA SUAVE DA PRIMEIRA IMAGEM)
+   ========================================================================== */
 .container {
     position: relative;
     z-index: 10;
     width: 100%;
-    margin: auto;
     display: flex;
     justify-content: center;
 }
 
 .card-layout {
-    background-color: rgba(255, 255, 255, 0.97);
-    border-radius: 35px;
+    background-color: #fff5f6; /* Tom off-white rosado idêntico à maquete */
+    border-radius: 28px;
     padding: 35px 25px;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(219, 39, 119, 0.15);
-    border: 4px solid #fbcfe8;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    border: 5px solid #ffffff; /* Borda branca espessa arredondada */
 }
 
 .target-card {
     width: 100%;
-    max-width: 480px;
+    max-width: 460px;
     animation: slideUp 0.6s ease-out forwards;
 }
 
-/* ABA AMPLIADA (Dynamic Wide Area) */
 .wide-card {
     width: 100%;
-    max-width: 720px; /* Aumentado substancialmente para caber o trio lateral */
+    max-width: 740px;
     animation: fadeIn 0.8s ease-in-out forwards;
 }
 
@@ -123,15 +150,22 @@ body {
 }
 .pixel-button:active { transform: translateY(6px); box-shadow: 0 2px 0 #f472b6; }
 .footer-hint { color: #b55d88; font-size: 0.85rem; margin-top: 35px; }
-.card-title { color: #9d174d; font-size: 2.2rem; margin-bottom: 25px; }
 
-/* DESIGN DE 3 COLUNAS: Lado a Lado */
+/* Configuração do Título Interno da Carta */
+.card-title {
+    color: #831039;
+    font-size: 2.4rem;
+    font-family: 'Georgia', serif;
+    margin-bottom: 25px;
+}
+
+/* Vitrine Sanrio com os personagens laterais */
 .sanrio-showcase {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
-    margin: 20px auto;
+    gap: 20px;
+    margin: 25px auto;
 }
 
 .side-character {
@@ -139,27 +173,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background: #fff0f5;
-    padding: 15px 10px;
+    background: #ffffff;
+    padding: 20px 12px;
     border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba(251, 207, 232, 0.3);
     border: 2px dashed #fbcfe8;
 }
 
-.pixel-sprite { font-size: 2.2rem; margin-bottom: 8px; display: block; }
-.char-tag { font-size: 0.85rem; font-weight: bold; padding: 4px 10px; border-radius: 12px; }
+.pixel-sprite { font-size: 2.6rem; margin-bottom: 8px; }
+.char-tag { font-size: 0.85rem; font-weight: bold; padding: 4px 12px; border-radius: 12px; }
 .hk-tag { background-color: #ffe4e6; color: #e11d48; }
 .kuromi-tag { background-color: #f3e8ff; color: #6b21a8; }
 
-/* Carrossel Centralizado */
+/* Moldura do Carrossel */
 .photo-carousel {
     position: relative;
-    width: 260px;
-    height: 260px;
-    border-radius: 20px;
+    width: 270px;
+    height: 270px;
+    border-radius: 24px;
     overflow: hidden;
-    border: 6px solid #ffd1dc;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 6px solid #ffffff;
+    box-shadow: 0 8px 25px rgba(157, 23, 77, 0.1);
 }
 
 .carousel-img {
@@ -174,28 +208,26 @@ body {
 }
 .carousel-img.active { opacity: 1; }
 
-.message-box { margin-top: 35px; }
-.letter { color: #4b5563; line-height: 1.7; font-size: 1.05rem; text-align: left; }
-.signature { color: #db2777; font-weight: bold; font-size: 1.4rem; margin-top: 25px; }
-.couple-container { margin-top: 30px; display: flex; justify-content: center; }
-.couple-img { max-width: 160px; height: auto; border-radius: 15px; }
+.message-box { margin-top: 35px; padding: 0 10px; }
+.letter { color: #534549; line-height: 1.8; font-size: 1.05rem; text-align: left; }
+.signature { color: #db2777; font-weight: bold; font-size: 1.4rem; margin-top: 30px; }
+.couple-container { margin-top: 35px; display: flex; justify-content: center; }
+.couple-img { max-width: 160px; height: auto; border-radius: 15px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .hidden { display: none !important; }
 
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* ADAPTAÇÕES COMPUTADOR / TV */
+/* Responsividade Monitores e TVs */
 @media screen and (min-width: 768px) {
-    .photo-carousel { width: 320px; height: 320px; }
-    .pixel-sprite { font-size: 3.5rem; }
-    .char-tag { font-size: 1rem; }
+    .photo-carousel { width: 340px; height: 340px; }
+    .pixel-sprite { font-size: 3.8rem; }
 }
 @media screen and (min-width: 1200px) {
-    .wide-card { max-width: 950px; padding: 55px; }
-    .card-title { font-size: 3.5rem; }
-    .photo-carousel { width: 420px; height: 420px; }
-    .letter { font-size: 1.35rem; line-height: 1.8; }
-    .signature { font-size: 1.9rem; }
-    .pixel-sprite { font-size: 4.5rem; }
+    .wide-card { max-width: 980px; padding: 55px; }
+    .card-title { font-size: 3.6rem; }
+    .photo-carousel { width: 440px; height: 440px; }
+    .letter { font-size: 1.35rem; line-height: 1.9; }
+    .pixel-sprite { font-size: 4.8rem; }
 }
