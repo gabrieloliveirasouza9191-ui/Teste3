@@ -78,4 +78,4 @@ function startCarousel() {
         currentIndex = (currentIndex + 1) % images.length;
         images[currentIndex].className = 'carousel-img active';
     }, 3200);
-}
+                            }
